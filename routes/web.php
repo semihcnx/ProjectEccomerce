@@ -18,6 +18,21 @@ Route::post('/ara','UrunController@ara')->name('urun_ara');
 Route::get('/ara','UrunController@ara')->name('urun_ara');
 
 
+Route::group(['prefix' => 'yonetim','namespace'=>'Yonetim'], function () {
+
+    Route::redirect('/', '/yonetim/oturumac');
+
+    Route::match(['get','post'],'/oturumac','KullaniciController@oturumac')->name('yonetim.oturumac');
+    Route::get('/oturumkapat','KullaniciController@oturumkapat')->name('yonetim.oturumkapat');
+
+    Route::group(['middleware' => 'yonetim'], function () {
+
+        Route::get('/anasayfa','AnasayfaController@index')->name('yonetim.anasayfa');
+
+    });
+
+});
+
 Route::group(['prefix'=>'sepet'], function() {
     Route::get('/','SepetController@index')->name('sepet');
     Route::post('/ekle','SepetController@ekle')->name('sepet.ekle');
