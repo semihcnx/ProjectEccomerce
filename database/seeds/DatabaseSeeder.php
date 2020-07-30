@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         Eloquent::unguard();
         $this->call(KategoriTableSeeder::class);
+        $this->call(UrunTableSeeder::class);
+        $this->call(KullaniciSeed::class);
         // $this->call(UrunTableSeed::class);
 
     }

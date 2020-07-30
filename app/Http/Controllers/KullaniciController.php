@@ -29,8 +29,13 @@ class KullaniciController extends Controller
             'email'=>'required|email',
             'password'=>'required'
         ]);
+            $credentials= [
+                'email'=>request('email'),
+                'password'=>request('password'),
+                'aktif_mi'=>1
+            ];
 
-        if (auth()->attempt(['email'=>request('email'),'password'=>request('password')],request()->has('benihatirla'))) {
+        if (auth()->attempt($credentials,request()->has('benihatirla'))) {
             request()->session()->regenerate(); //Session Bilgilerini Güncelle
 
             $aktif_sepet_id=Sepet::aktif_sepet_id();
