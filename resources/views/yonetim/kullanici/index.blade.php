@@ -35,6 +35,11 @@
             </tr>
         </thead>
         <tbody>
+        @if (count($listele)== 0 )
+            <tr>
+                <td colspan="7" class="text-center">Kayıt Bulunamadı.</td>
+            </tr>
+            @endif
             @foreach($listele as $entry)
             <tr>
                 <td>{{$entry->id}}</td>
