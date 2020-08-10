@@ -45,6 +45,22 @@ Route::group(['prefix' => 'yonetim','namespace'=>'Yonetim'], function () {
             Route::get('/sil/{id}','KategoriController@sil')->name('yonetim.kategori.sil');
         });
 
+        Route::group(['prefix' => 'urun'], function () {
+            Route::match(['get', 'post'], '/','UrunController@index')->name('yonetim.urun');
+            Route::get('/yeni','UrunController@form')->name('yonetim.urun.yeni');
+            Route::get('/duzenle/{id}','UrunController@form')->name('yonetim.urun.duzenle');
+            Route::post('/duzenle/{id?}','UrunController@kaydet')->name('yonetim.urun.kaydet');
+            Route::get('/sil/{id}','UrunController@sil')->name('yonetim.urun.sil');
+        });
+
+        Route::group(['prefix' => 'siparis'], function () {
+            Route::match(['get', 'post'], '/','SiparisController@index')->name('yonetim.siparis');
+            Route::get('/yeni','SiparisController@form')->name('yonetim.siparis.yeni');
+            Route::get('/duzenle/{id}','SiparisController@form')->name('yonetim.siparis.duzenle');
+            Route::post('/duzenle/{id?}','SiparisController@kaydet')->name('yonetim.siparis.kaydet');
+            Route::get('/sil/{id}','SiparisController@sil')->name('yonetim.siparis.sil');
+        });
+
     });
 
 });
@@ -80,7 +96,6 @@ Route::get('/test/mail',function (){
     $kullanici = App\Models\Kullanici::find(1);
     return new App\Mail\KullaniciKayitMail($kullanici);
 });
-
 
 
 

@@ -14,10 +14,8 @@ class AnasayfaController extends Controller
 
 	     $kategoriler= Kategori::whereRaw('ust_id is null')->take(8)->get();
 
-        $urunler_slider= Urun::select('urun.*')
-            ->join('urun_detay','urun_detay.urun_id','urun_id')
-            ->where('urun_detay.goster_slider',1)
-            ->orderBy('guncelleme_tarihi','desc')
+        $urunler_slider= UrunDetay::with('urun')
+            ->where('goster_slider',1)
             ->take(5)->get();
         // with = ürün tablosu ile birlikte çek demek
 
